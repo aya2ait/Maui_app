@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="restaurant.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:restaurant.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <!-- Page de bienvenue comme page racine -->
+    <TabBar x:Name="WelcomeTab" Route="welcome">
+        <ShellContent
+            Title="Bienvenue"
+            ContentTemplate="{DataTemplate views:WelcomePage}" />
+    </TabBar>
+
+    <!-- Menu principal de l'application pour les clients -->
+    <TabBar x:Name="MainTab" Route="main" IsVisible="False">
+        <Tab Title="Menu" Icon="menu_icon.png" Route="menu">
+            <ShellContent
+                Title="Catégories"
+                ContentTemplate="{DataTemplate views:CategoriesPage}"
+                Route="categories" />
+        </Tab>
+        <Tab Title="Reservation" Icon="menu_icon.png" Route="reservations">
+            <ShellContent
+                Title="Reservation"
+                ContentTemplate="{DataTemplate views:CreateReservationPage}"
+                Route="reservations" />
+        </Tab>
+        <Tab Title="MesReservation" Icon="menu_icon.png" Route="mesreservations">
+            <ShellContent
+                Title="MesReservation"
+                ContentTemplate="{DataTemplate views:UserReservationsPage}"
+                Route="mesreservations" />
+        </Tab>
+        
+        <Tab Title="Panier" Icon="cart_icon.png" Route="panier">
+            <ShellContent
+                Title="Mon Panier"
+                ContentTemplate="{DataTemplate views:PanierPage}" />
+        </Tab>
+        
+
+        
+        <Tab Title="Compte" Icon="user_icon.png" Route="compte">
+            <ShellContent
+                Title="Mon Profil"
+                ContentTemplate="{DataTemplate views:ProfilePage}"
+                Route="profile" />
+        </Tab>
+        
+
+    </TabBar>
+    
+
+    <!-- Menu pour les administrateurs (simplifié) -->
+    <TabBar x:Name="AdminTab" Route="admin" IsVisible="False">
+        <Tab Title="Tableau de bord" Icon="dashboard_icon.png" Route="dashboard">
+            <ShellContent
+                Title="Dashboard"
+                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+        </Tab>
+        
+        <Tab Title="Gestion Plats" Icon="food_icon.png" Route="gestion_plats">
+            <ShellContent
+                Title="Gestion des Plats"
+                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+        </Tab>
+        
+        <Tab Title="Gestion Catégories" Icon="category_icon.png" Route="gestion_categories">
+            <ShellContent
+                Title="Gestion des Catégories"
+                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+        </Tab>
+        
+        <Tab Title="Utilisateurs" Icon="users_icon.png" Route="gestion_users">
+            <ShellContent
+                Title="Gestion des Utilisateurs"
+                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+        </Tab>
+    </TabBar>
+
+    <!-- Pages d'authentification -->
+    <TabBar x:Name="AuthTab" Route="auth" IsVisible="False">
+        <ShellContent
+            Title="Connexion"
+            ContentTemplate="{DataTemplate views:LoginPage}"
+            Route="login" />
+        <ShellContent
+            Title="Inscription"
+            ContentTemplate="{DataTemplate views:RegisterPage}"
+            Route="register" />
+    </TabBar>
+</Shell>

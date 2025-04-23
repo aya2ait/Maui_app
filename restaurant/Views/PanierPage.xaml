@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:restaurant.ViewModels"
+             x:Class="restaurant.Views.PanierPage"
+             Title="Mon Panier">
+    
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- En-tête -->
+        <Label Text="Mon Panier" 
+               FontSize="24" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center"
+               Margin="0,20,0,20" />
+        
+        <!-- Liste des produits dans le panier -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding LignesCommande}"
+                        EmptyView="Votre panier est vide">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Frame HeightRequest="60" 
+                               WidthRequest="60"
+                               Padding="0"
+                               IsClippedToBounds="True"
+                               CornerRadius="30">
+                            <Image Source="{Binding Plat.ImageUrl}" 
+                                   Aspect="AspectFill"/>
+                        </Frame>
+                        
+                        <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                            <Label Text="{Binding Plat.Nom}" 
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding PrixUnitaire, StringFormat='{0:C}'}" />
+                            <Label Text="{Binding Notes}" 
+                                   FontSize="12"
+                                   TextColor="Gray"
+                                   IsVisible="{Binding Notes, Converter={StaticResource StringNotNullOrEmptyConverter}}"/>
+                        </StackLayout>
+                        
+                        <StackLayout Grid.Column="2" 
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center">
+                            <Button Text="-"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    Padding="0"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PanierViewModel}}, Path=DiminuerQuantiteCommand}"
+                                    CommandParameter="{Binding Plat.PlatID}"/>
+                                    
+                            <Label Text="{Binding Quantite}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Margin="10,0"
+                                   FontAttributes="Bold"/>
+                                   
+                            <Button Text="+"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    Padding="0"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PanierViewModel}}, Path=AugmenterQuantiteCommand}"
+                                    CommandParameter="{Binding Plat.PlatID}"/>
+                        </StackLayout>
+                        
+                        <Button Grid.Column="2" 
+                                Grid.Row="1"
+                                Text="Supprimer"
+                                HeightRequest="35"
+                                Padding="0"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PanierViewModel}}, Path=SupprimerPlatCommand}"
+                                CommandParameter="{Binding Plat.PlatID}"/>
+                                
+                        <Label Grid.Column="1" 
+                               Grid.Row="2"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding SousTotal, StringFormat='Sous-total: {0:C}'}"
+                               HorizontalOptions="End"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,0"/>
+                               
+                        <BoxView Grid.ColumnSpan="3" 
+                                 Grid.Row="3" 
+                                 HeightRequest="1" 
+                                 BackgroundColor="LightGray" 
+                                 Margin="0,10,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <!-- Résumé et actions -->
+        <Grid Grid.Row="2" 
+              RowDefinitions="Auto,Auto,Auto"
+              ColumnDefinitions="*,*"
+              Padding="15"
+              BackgroundColor="#f5f5f5">
+            
+            <Label Text="Total" 
+                   Grid.Column="0"
+                   FontAttributes="Bold"/>
+                   
+            <Label Text="{Binding Total, StringFormat='{0:C}'}" 
+                   Grid.Column="1"
+                   HorizontalOptions="End"
+                   FontAttributes="Bold"
+                   FontSize="18"/>
+                   
+            <Button Text="Vider le panier" 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,10,5,0"
+                    Command="{Binding ViderPanierCommand}"
+                    IsEnabled="{Binding HasItems}"/>
+                    
+            <Button Text="Commander" 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Margin="5,10,0,0"
+                    Command="{Binding PasserCommandeCommand}"
+                    IsEnabled="{Binding HasItems}"/>
+                    
+            <Button Text="Continuer les achats" 
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="Transparent"
+                    TextColor="#0078D7"
+                    Margin="0,10,0,0"
+                    Command="{Binding ContinuerAchatCommand}"/>
+        </Grid>
+    </Grid>
+</ContentPage>

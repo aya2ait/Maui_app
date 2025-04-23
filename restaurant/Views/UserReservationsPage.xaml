@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:restaurant.ViewModels"
+             x:Class="restaurant.Views.UserReservationsPage"
+             Title="Mes Réservations">
+    
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,10">
+            <Label Text="Mes Réservations" 
+                   FontSize="24" 
+                   HorizontalOptions="Center"/>
+            <Label Text="Consultez et gérez vos réservations" 
+                   FontSize="14" 
+                   TextColor="Gray"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Content -->
+        <RefreshView Grid.Row="1" 
+                     IsRefreshing="{Binding IsRefreshing}" 
+                     Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Reservations}"
+                            EmptyView="Vous n'avez aucune réservation."
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="20,5" Padding="15" BorderColor="#DDDDDD">
+                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding InfoTable}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"/>
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Statut}"
+                                       TextColor="{Binding StatusColor}"
+                                       FontAttributes="Bold"/>
+
+                                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                             Orientation="Horizontal" Spacing="10">
+                                    <Label Text="{Binding DateFormatee}" FontSize="16"/>
+                                    <Label Text="à" FontSize="16"/>
+                                    <Label Text="{Binding HeureFormatee}" FontSize="16"/>
+                                </StackLayout>
+
+                                <Label Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding NombrePersonnes, StringFormat='{0} personne(s)'}"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+
+                                <Button Grid.Row="2" Grid.Column="1"
+                                        Text="Annuler"
+                                        BackgroundColor="#E53935"
+                                        TextColor="White"
+                                        FontSize="12"
+                                        HeightRequest="30"
+                                        Padding="5,0"
+                                        IsVisible="{Binding EstAnnulable}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserReservationsViewModel}}, Path=CancelReservationCommand}"
+                                        CommandParameter="{Binding ReservationID}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- Footer -->
+        <Button Grid.Row="2"
+                Text="Nouvelle Réservation"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                Margin="20,10,20,20"
+                Command="{Binding NewReservationCommand}"/>
+    </Grid>
+</ContentPage>

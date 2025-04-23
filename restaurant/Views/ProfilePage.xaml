@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="restaurant.Views.ProfilePage"
+             Title="Mon Profil">
+    <ScrollView>
+        <Grid Padding="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- En-tête du profil -->
+            <Frame Grid.Row="0" Padding="20" HasShadow="True" BorderColor="LightGray" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Avatar (placé à gauche) -->
+                    <Frame Grid.Column="0" 
+                        HeightRequest="80" 
+                        WidthRequest="80" 
+                        CornerRadius="40" 
+                        BackgroundColor="{StaticResource Primary}"
+                        Padding="0"
+                        IsClippedToBounds="True"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                        <Label Text="{Binding Utilisateur.Prenom, Converter={StaticResource FirstLetterConverter}}"
+                            FontSize="36"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Frame>
+
+                    <!-- Informations principales (à droite de l'avatar) -->
+                    <VerticalStackLayout Grid.Column="1" Padding="15,0,0,0" VerticalOptions="Center">
+                        <Label Text="{Binding Utilisateur.NomComplet}" FontSize="22" FontAttributes="Bold" />
+                        <Label Text="{Binding Utilisateur.Email}" FontSize="16" TextColor="Gray" />
+                        <Label Text="{Binding Utilisateur.TypeUtilisateur}" FontSize="16" TextColor="DarkGray" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Informations du profil -->
+            <Frame Grid.Row="1" Padding="20" HasShadow="True" BorderColor="LightGray" CornerRadius="10">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Informations personnelles" FontSize="18" FontAttributes="Bold" />
+
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="15" RowSpacing="15">
+                        <!-- En mode lecture -->
+                        <StackLayout Grid.Row="0" Grid.Column="0" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}">
+                            <Label Text="Nom" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Utilisateur.Nom}" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}">
+                            <Label Text="Prénom" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Utilisateur.Prenom}" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}">
+                            <Label Text="Téléphone" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Utilisateur.Telephone}" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}">
+                            <Label Text="Date d'inscription" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Utilisateur.DateInscription, StringFormat='{0:dd/MM/yyyy}'}" IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <!-- En mode édition -->
+                        <StackLayout Grid.Row="0" Grid.Column="0" IsVisible="{Binding IsEditing}">
+                            <Label Text="Nom" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Utilisateur.Nom}" IsVisible="{Binding IsEditing}" />
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsEditing}">
+                            <Label Text="Prénom" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Utilisateur.Prenom}" IsVisible="{Binding IsEditing}" />
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsEditing}">
+                            <Label Text="Téléphone" FontAttributes="Bold" />
+                        </StackLayout>
+                        <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Utilisateur.Telephone}" IsVisible="{Binding IsEditing}" Keyboard="Telephone" />
+                    </Grid>
+
+                    <!-- Boutons d'action pour le profil -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+                        <Button Text="Modifier" 
+                                Command="{Binding EditProfileCommand}" 
+                                IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+                        <Button Text="Annuler" 
+                                Command="{Binding CancelEditCommand}" 
+                                IsVisible="{Binding IsEditing}" 
+                                BackgroundColor="Gray" />
+                        <Button Text="Enregistrer" 
+                                Command="{Binding SaveProfileCommand}" 
+                                IsVisible="{Binding IsEditing}" />
+                    </StackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Changement de mot de passe -->
+            <Frame Grid.Row="2" Padding="20" HasShadow="True" BorderColor="LightGray" CornerRadius="10">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Changer le mot de passe" FontSize="18" FontAttributes="Bold" />
+
+                    <Label Text="Mot de passe actuel" FontAttributes="Bold" />
+                    <Entry Placeholder="Entrez votre mot de passe actuel" 
+                           Text="{Binding CurrentPassword}" 
+                           IsPassword="True" />
+
+                    <Label Text="Nouveau mot de passe" FontAttributes="Bold" />
+                    <Entry Placeholder="Entrez votre nouveau mot de passe" 
+                           Text="{Binding NewPassword}" 
+                           IsPassword="True" />
+
+                    <Label Text="Confirmer le mot de passe" FontAttributes="Bold" />
+                    <Entry Placeholder="Confirmez votre nouveau mot de passe" 
+                           Text="{Binding ConfirmPassword}" 
+                           IsPassword="True" />
+
+                    <Button Text="Changer le mot de passe" 
+                            Command="{Binding ChangePasswordCommand}" 
+                            HorizontalOptions="End" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Message de notification -->
+            <Frame Grid.Row="3" Padding="15" HasShadow="True" BorderColor="{Binding IsSuccess, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Green,Red'}" 
+                   CornerRadius="10" IsVisible="{Binding HasMessage}">
+                <Label Text="{Binding Message}" 
+                       TextColor="{Binding IsSuccess, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Green,Red'}" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- Déconnexion -->
+            <Button Grid.Row="4" 
+                    Text="Déconnexion" 
+                    Command="{Binding LogoutCommand}" 
+                    BackgroundColor="Red" 
+                    TextColor="White" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

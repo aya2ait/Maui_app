@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="restaurant.Views.LoginPage"
+             Title="Connexion">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Connexion" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+            
+            <Frame Padding="20" HasShadow="True" BorderColor="LightGray" CornerRadius="10">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Email" FontAttributes="Bold" />
+                    <Entry Placeholder="Entrez votre email" 
+                           Text="{Binding Email}" 
+                           Keyboard="Email"
+                           IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}" />
+                    
+                    <Label Text="Mot de passe" FontAttributes="Bold" />
+                    <Entry Placeholder="Entrez votre mot de passe" 
+                           Text="{Binding Password}" 
+                           IsPassword="True"
+                           IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}" />
+                    
+                    <Label Text="{Binding ErrorMessage}" 
+                           TextColor="Red" 
+                           IsVisible="{Binding HasError}" 
+                           Margin="0,10,0,0" />
+                    
+                    <Button Text="Se connecter" 
+                            Command="{Binding LoginCommand}" 
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                            HorizontalOptions="Fill"
+                            Margin="0,10,0,0" />
+                            
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"
+                                       HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Label Text="Pas encore de compte ?" VerticalOptions="Center" />
+                <Button Text="S'inscrire" 
+                        Command="{Binding NavigateToRegisterCommand}" 
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Primary}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

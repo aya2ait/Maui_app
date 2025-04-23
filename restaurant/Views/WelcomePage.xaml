@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="restaurant.Views.WelcomePage"
+             Title="Bienvenue">
+
+    <Grid RowDefinitions="Auto, 3*, Auto" BackgroundColor="#F1F1F1">
+        <!-- En-tête avec logo ou image -->
+        <VerticalStackLayout Grid.Row="0" 
+                             VerticalOptions="Center" 
+                             HorizontalOptions="Center"
+                             Spacing="15"
+                             Padding="20">
+           
+
+            <Label Text="Nom du Restaurant"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Délicieux plats, service rapide"
+                   FontSize="20"
+                   TextColor="#7F8C8D"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Contenu -->
+        <VerticalStackLayout Grid.Row="1" 
+                             VerticalOptions="CenterAndExpand"
+                             Padding="25"
+                             Spacing="25">
+            <Frame BorderColor="#BDC3C7" 
+                   CornerRadius="12"
+                   Padding="20"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="Découvrez notre menu"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#34495E" />
+
+                    <Label Text="connectez-vous pour passer une commande."
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#7F8C8D" />
+
+                
+
+                    <!-- Boutons d'authentification centrés -->
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" VerticalOptions="CenterAndExpand">
+                        <Button Text="Se connecter"
+                                Command="{Binding LoginCommand}"
+                                BackgroundColor="#2980B9"
+                                TextColor="White"
+                                WidthRequest="150"
+                                HeightRequest="50"
+                                Padding="10,5" />
+
+                        <Button Text="S'inscrire"
+                                Command="{Binding RegisterCommand}"
+                                BackgroundColor="#27AE60"
+                                TextColor="White"
+                                WidthRequest="150"
+                                HeightRequest="50"
+                                Padding="10,5" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+
+        <!-- Bas de page -->
+        <VerticalStackLayout Grid.Row="2" 
+                             Padding="20"
+                             Margin="0,0,0,30"
+                             HorizontalOptions="Center">
+            <Label Text="© 2025 - Restaurant App"
+                   FontSize="14"
+                   TextColor="#95A5A6" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
