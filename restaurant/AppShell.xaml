@@ -60,18 +60,25 @@
                 Title="Dashboard"
                 ContentTemplate="{DataTemplate views:CategoriesPage}" />
         </Tab>
+        <!-- Dans AppShell.xaml, remplacer le ShellContent pour la gestion des catégories -->
+        <Tab Title="edit Catégories" Icon="category_icon.png" Route="edit_categorie">
+            <ShellContent
+                Title="Gestion des Catégories"
+                ContentTemplate="{DataTemplate views:CategoriesAdminPage}" />
+        </Tab>
         
-        <Tab Title="Gestion Plats" Icon="food_icon.png" Route="gestion_plats">
+        <Tab Title="Gestion Plats" Icon="food_icon.png" Route="plats">
             <ShellContent
                 Title="Gestion des Plats"
-                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+                ContentTemplate="{DataTemplate views:PlatsListPage}" />
         </Tab>
         
         <Tab Title="Gestion Catégories" Icon="category_icon.png" Route="gestion_categories">
             <ShellContent
                 Title="Gestion des Catégories"
-                ContentTemplate="{DataTemplate views:CategoriesPage}" />
+                ContentTemplate="{DataTemplate views:EditCategoriePage}" />
         </Tab>
+        
         
         <Tab Title="Utilisateurs" Icon="users_icon.png" Route="gestion_users">
             <ShellContent

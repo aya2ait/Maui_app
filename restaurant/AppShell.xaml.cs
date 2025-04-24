@@ -27,7 +27,15 @@ namespace restaurant
             Routing.RegisterRoute(nameof(PlatsPage), typeof(PlatsPage));
             Routing.RegisterRoute("reservations", typeof(CreateReservationPage));
             Routing.RegisterRoute("mesreservations", typeof(UserReservationsPage));
-            Routing.RegisterRoute("paiement", typeof(PaiementPage));
+           Routing.RegisterRoute("gestion_categories", typeof(EditCategoriePage));
+            // Dans AppShell.cs, méthode InitializeComponent ou constructeur
+            Routing.RegisterRoute("edit_categorie", typeof(CategoriesAdminPage));
+            // Enregistrement des routes pour la navigation
+            Routing.RegisterRoute("plats", typeof(PlatsListPage));
+            Routing.RegisterRoute("platdetail", typeof(PlatDetailPage));
+
+
+
 
 
             
@@ -126,18 +134,8 @@ namespace restaurant
                         try
                         {
                             // Obtenir l'instance de la page de paiement depuis le conteneur DI
-                            var paiementPage = Handler.MauiContext.Services.GetService<PaiementPage>();
                     
-                            if (paiementPage != null)
-                            {
-                                // Convertir les paramètres
-                                int commandeId = int.Parse(queryParams["commandeId"]);
-                                decimal montantTotal = decimal.Parse(queryParams["montantTotal"], 
-                                    System.Globalization.CultureInfo.InvariantCulture);
-                            
-                                // Initialiser la page
-                                paiementPage.InitialiserAvecCommande(commandeId, montantTotal);
-                            }
+                           
                         }
                         catch (Exception ex)
                         {
@@ -146,6 +144,5 @@ namespace restaurant
                     }
                 }
             }
-        }        
-    }
+        }    }
 }

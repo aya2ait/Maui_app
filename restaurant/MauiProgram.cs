@@ -44,8 +44,28 @@ namespace restaurant
             builder.Services.AddTransient<CreateReservationPage>();
             builder.Services.AddTransient<UserReservationsPage>();
             // Dans la méthode ConfigureServices de votre MauiProgram.cs, ajoutez :
-            builder.Services.AddTransient<PaiementViewModel>();
-            builder.Services.AddTransient<PaiementPage>();
+            
+            builder.Services.AddSingleton<MenuService>();
+            builder.Services.AddTransient<EditCategorieViewModel>();
+            builder.Services.AddTransient<EditCategoriePage>();
+            // Ajouter dans MauiProgram.cs
+            builder.Services.AddTransient<CategoriesAdminViewModel>();
+            builder.Services.AddTransient<CategoriesAdminPage>();
+            builder.Services.AddTransient<PlatsListViewModel>();
+            builder.Services.AddTransient<PlatsListPage>();
+            builder.Services.AddTransient<PlatDetailViewModel>();
+
+            // Enregistrer les pages
+            builder.Services.AddTransient<PlatDetailPage>();
+           
+
+
+
+
+
+            
+
+            
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

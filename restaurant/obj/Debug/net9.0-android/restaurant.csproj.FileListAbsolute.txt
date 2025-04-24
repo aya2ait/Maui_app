@@ -1389,3 +1389,4 @@ C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-android\stam
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-android\stamp\_GenerateJavaStubs.stamp
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-android\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-android\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-android\restaurant.sourcelink.json

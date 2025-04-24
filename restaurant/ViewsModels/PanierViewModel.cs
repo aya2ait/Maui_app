@@ -174,17 +174,13 @@ private async void PasserCommande()
         // Vider le panier après avoir passé la commande
         _panierService.ViderPanier();
         
-        // NOUVEAU : Naviguer vers la page de paiement au lieu d'afficher une alerte
-        // Créer un dictionnaire de paramètres de navigation
-        var navigationParameters = new Dictionary<string, object>
-        {
-            { "commandeId", commandeId },
-            { "montantTotal", commande.Total }
-        };
+        // Afficher une confirmation
+        await Application.Current.MainPage.DisplayAlert("Commande passée", 
+            "Votre commande a été enregistrée avec succès.", 
+            "OK");
         
-        // Navigation vers la page de paiement avec paramètres
-        // Note: Vous devrez enregistrer "paiement" comme route dans votre AppShell.xaml.cs
-        await Shell.Current.GoToAsync("paiement", navigationParameters);
+        // Rediriger vers la page d'accueil ou la page de suivi de commande
+        await Shell.Current.GoToAsync("///menu");
     }
     catch (Exception ex)
     {
@@ -196,7 +192,8 @@ private async void PasserCommande()
     {
         IsBusy = false;
     }
-}        private async void ContinuerAchat()
+}        
+        private async void ContinuerAchat()
         {
             // Rediriger l'utilisateur vers la page des catégories
             await Shell.Current.GoToAsync("///menu");

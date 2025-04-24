@@ -301,3 +301,4 @@ C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-maccatalyst\
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-maccatalyst\maccatalyst-x64\restaurant.pdb
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-maccatalyst\maccatalyst-x64\restaurant.genruntimeconfig.cache
 C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-maccatalyst\maccatalyst-x64\ref\restaurant.dll
+C:\Users\ayaas\RiderProjects\restaurant\restaurant\obj\Debug\net9.0-maccatalyst\maccatalyst-x64\restaurant.sourcelink.json

@@ -48,6 +48,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Resources.Style
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
+[C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/CategoriesAdminPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.CategoriesAdminPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CategoriesAdminPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CategoriesAdminPage.xaml
+
 [C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/CategoriesPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.CategoriesPage.xaml
@@ -60,23 +66,35 @@ build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.CreateRes
 build_metadata.AdditionalFiles.TargetPath = Views\CreateReservationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\CreateReservationPage.xaml
 
+[C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/EditCategoriePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.EditCategoriePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\EditCategoriePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\EditCategoriePage.xaml
+
 [C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.LoginPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml
 
-[C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/PaiementPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.PaiementPage.xaml
-build_metadata.AdditionalFiles.TargetPath = Views\PaiementPage.xaml
-build_metadata.AdditionalFiles.RelativePath = Views\PaiementPage.xaml
-
 [C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/PanierPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.PanierPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\PanierPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\PanierPage.xaml
+
+[C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/PlatDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.PlatDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\PlatDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\PlatDetailPage.xaml
+
+[C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/PlatsListPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = restaurant.Views.PlatsListPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\PlatsListPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\PlatsListPage.xaml
 
 [C:/Users/ayaas/RiderProjects/restaurant/restaurant/Views/PlatsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

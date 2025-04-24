@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:restaurant.ViewModels"
+             xmlns:model="clr-namespace:restaurant.Models"
+             x:Class="restaurant.Views.PlatDetailPage"
+             x:DataType="vm:PlatDetailViewModel"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="AutoSize" Value="TextChanges" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,Auto" Padding="15">
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <Label Text="Nom du plat" />
+                <Entry Text="{Binding Nom}" Placeholder="Entrez le nom du plat" />
+
+                <Label Text="Description" />
+                <Editor Text="{Binding Description}" Placeholder="Entrez la description" HeightRequest="100" />
+
+                <Label Text="Prix" />
+                <Entry Text="{Binding Prix}" Placeholder="0.00" Keyboard="Numeric" />
+
+                <Label Text="URL de l'image" />
+                <Entry Text="{Binding ImageUrl}" Placeholder="URL de l'image" />
+
+                <Label Text="Catégorie" />
+                <Picker ItemsSource="{Binding Categories}" 
+                        SelectedItem="{Binding SelectedCategorie}"
+                        ItemDisplayBinding="{Binding Nom}" 
+                        Title="Sélectionnez une catégorie" />
+
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding EstDisponible}" />
+                    <Label Text="Disponible" VerticalOptions="Center" />
+                </StackLayout>
+
+                <Frame IsVisible="{Binding ImageUrlHasValue}"
+                       Padding="0" HasShadow="True" Margin="0,10">
+                    <Image Source="{Binding ImageUrl}" 
+                           HeightRequest="200" 
+                           Aspect="AspectFit"
+                           HorizontalOptions="Center" />
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" Margin="0,10,0,0">
+            <Button Grid.Column="0" Text="Annuler" Command="{Binding CancelCommand}" Margin="0,0,5,0" />
+            <Button Grid.Column="1" Text="Enregistrer" Command="{Binding SaveCommand}" BackgroundColor="Green" TextColor="White" Margin="5,0,0,0" />
+        </Grid>
+    </Grid>
+</ContentPage>

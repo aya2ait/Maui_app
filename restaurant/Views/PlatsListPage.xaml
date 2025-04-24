@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:restaurant.ViewModels"
+             xmlns:model="clr-namespace:restaurant.Models"
+             x:Class="restaurant.Views.PlatsListPage"
+             x:DataType="vm:PlatsListViewModel"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
+            <Button Text="Ajouter un plat" Command="{Binding AddPlatCommand}" Margin="0,0,10,10"/>
+        </StackLayout>
+
+        <RefreshView Grid.Row="1" Command="{Binding LoadPlatsCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Plats}"
+                            EmptyView="Aucun plat disponible."
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Plat">
+                        <Frame Margin="0,5" Padding="10" BorderColor="LightGray">
+                            <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+                                <Image Grid.Column="0" Grid.RowSpan="4" 
+                                       Source="{Binding ImageUrl}" 
+                                       HeightRequest="80" WidthRequest="80"
+                                       Aspect="AspectFill"
+                                       VerticalOptions="Center"/>
+
+                                <Label Grid.Column="1" Grid.Row="0" 
+                                       Text="{Binding Nom}" 
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+
+                                <Label Grid.Column="1" Grid.Row="1" 
+                                       Text="{Binding Description}"
+                                       FontSize="Small"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2"/>
+
+                                <Label Grid.Column="1" Grid.Row="2" 
+                                       Text="{Binding Prix, StringFormat='{0:C}'}"
+                                       FontAttributes="Bold"
+                                       TextColor="DarkGreen"/>
+
+                                <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                                    <Label Text="Disponible: " />
+                                    <Label Text="{Binding StatusText}" 
+                                           TextColor="{Binding StatusColor}"/>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="2" Grid.RowSpan="4" Orientation="Vertical" VerticalOptions="Center">
+                                    <Button Text="Modifier" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PlatsListViewModel}}, Path=EditPlatCommand}" 
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="100"
+                                            Margin="0,0,0,5"/>
+                                    
+                                    <Button Text="{Binding DisponibiliteButtonText}"
+                                            BackgroundColor="{Binding DisponibiliteButtonColor}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PlatsListViewModel}}, Path=ToggleDisponibiliteCommand}" 
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="100"
+                                            Margin="0,0,0,5"/>
+                                    
+                                    <Button Text="Supprimer" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PlatsListViewModel}}, Path=DeletePlatCommand}" 
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="Red"
+                                            TextColor="White"
+                                            WidthRequest="100"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>
